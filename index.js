@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 module.exports = async (req, res) => {
     if (req.method !== "POST") {
@@ -11,24 +11,22 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const response = await fetch("https://spotymate.com/api/download-track", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
-                "Referer": "https://spotymate.com/"
-            },
-            body: JSON.stringify({ url }),
-        });
+        const response = await axios.post(
+            "https://spotymate.com/api/download-track",
+            { url },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
+                    "Referer": "https://spotymate.com/"
+                },
+                timeout: 5000 // Timeout 5 detik
+            }
+        );
 
-        if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return res.status(200).json(data);
+        return res.status(200).json(response.data);
     } catch (error) {
-        console.error("Error:", error.message);
+        console.error("Error:", error);
         return res.status(500).json({ error: "Failed to fetch song", details: error.message });
     }
 };
