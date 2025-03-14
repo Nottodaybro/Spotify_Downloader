@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function downloadSong(songUrl) {
     try {
-        const response = await axios.post('https://your-vercel-project.vercel.app/api/download', { url: songUrl });
+        const response = await axios.post('https://lemon-spotify.vercel.app/api/download', { url: songUrl });
 
         if (response.data.file_url) {
             window.location.href = response.data.file_url;
