@@ -58,19 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function downloadSong(songUrl) {
     try {
-        const response = await axios.post("https://lemon-spotify.vercel.app/api/download", { url: songUrl }, {
-            headers: { "Content-Type": "application/json" }
+        const response = await axios.post("https://lemon-spotify.vercel.app/api/download", {
+            url: songUrl
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
 
-        if (response.data && response.data.file_url) {
-            window.location.href = response.data.file_url; // Redirect ke link download
-        } else {
-            console.error("Download link tidak ditemukan!");
-            alert("Gagal mendapatkan link download.");
-        }
+        console.log("Download response:", response.data);
+        return response.data.file_url;
     } catch (error) {
         console.error("Gagal mengunduh lagu:", error);
-        alert("Terjadi kesalahan saat mengunduh lagu.");
     }
 }
 
