@@ -1,4 +1,4 @@
-### wee Kalo Mau Ngambil Kodenya, Jangan Lupa Follow.
+### weeKalo Mau Ngambil Kodenya, Jangan Lupa Follow.
 ### Atau Minimal Bayar Pake Star Lah 🌟....
 
 <br>
