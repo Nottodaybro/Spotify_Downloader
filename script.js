@@ -61,7 +61,7 @@ async function downloadSong(songUrl) {
                 return;
         }
         
-        const downloadApi = `https://api.ureshii.my.id/api/downloader/spotify?url=${encodeURIComponent(songUrl)}`;
+        const downloadApi = `https://api.siputzx.my.id/api/d/spotify?url=${encodeURIComponent(songUrl)}`;
         
         try {
                 const response = await fetch(downloadApi);
@@ -72,8 +72,8 @@ async function downloadSong(songUrl) {
                 
                 const data = await response.json();
                 
-                if (data.status === true && data.url) {
-                        window.location.href = data.url;
+                if (data.status === true && data.download) {
+                        window.location.href = data.download;
                 } else {
                         alert("Download gagal, coba lagi nanti.");
                 }
