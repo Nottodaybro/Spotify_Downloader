@@ -3,43 +3,53 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.getElementById("searchButton");
   const resultsContainer = document.getElementById("results");
 
-  // Disable searching UI since we're focusing on URL input for download only
-  searchInput.placeholder = "Enter full Spotify track URL to download...";
-  searchButton.textContent = "Download";
-
   searchButton.addEventListener("click", async () => {
-    const url = searchInput.value.trim();
-    if (!url) {
-      alert("Please enter a Spotify track URL to download!");
+    const query = searchInput.value.trim();
+    if (!query) {
+      alert("Please enter a song name to search!");
       return;
     }
-    if (!url.includes("spotify.com/track/")) {
-      alert("Please enter a valid Spotify track URL!");
-      return;
-    }
+
+    const apiURL = `https://spotify-scraper-api.vercel.app/search?q=${encodeURIComponent(query)}&type=track&limit=10`;
+
+    resultsContainer.innerHTML = "<p>Searching...</p>";
 
     try {
-      resultsContainer.innerHTML = "<p>Processing your download request...</p>";
+      const res = await fetch(apiURL);
+      if (!res.ok) throw new Error(`API error: ${res.status}`);
 
-      // Use your backend API here; change URL if you host your own
-      const downloadApi = `https://api.siputzx.my.id/api/d/spotify?url=${encodeURIComponent(url)}`;
+      const data = await res.json();
 
-      const response = await fetch(downloadApi);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-      const data = await response.json();
-
-      if (data.status === true && data.download) {
-        resultsContainer.innerHTML = `<p>Download ready: <a href="${data.download}" target="_blank" download>Click here if your download doesn't start automatically</a></p>`;
-
-        // Auto-download trigger
-        window.location.href = data.download;
-      } else {
-        resultsContainer.innerHTML = "<p>Download failed, please try again later.</p>";
+      if (!data.tracks || data.tracks.length === 0) {
+        resultsContainer.innerHTML = "<p>No results found.</p>";
+        return;
       }
-    } catch (error) {
-      console.error("Download error:", error);
-      resultsContainer.innerHTML = "<p>An error occurred while downloading the song.</p>";
+
+      resultsContainer.innerHTML = "";
+
+      data.tracks.forEach(track => {
+        const div = document.createElement("div");
+        div.className = "track";
+        div.innerHTML = `
+          <img src="${track.album.images[0]?.url || ''}" alt="${track.name}" />
+          <div>
+            <p><strong>${track.name}</strong> - ${track.artists.map(a => a.name).join(", ")}</p>
+            <p>Duration: ${msToMinutesAndSeconds(track.duration_ms)}</p>
+            <a href="${track.external_urls.spotify}" target="_blank" rel="noopener">Open on Spotify</a>
+            ${track.preview_url ? `<audio controls src="${track.preview_url}"></audio>` : `<p>No preview available</p>`}
+          </div>
+        `;
+        resultsContainer.appendChild(div);
+      });
+    } catch (e) {
+      resultsContainer.innerHTML = "<p>Error fetching results.</p>";
+      console.error(e);
     }
   });
+
+  function msToMinutesAndSeconds(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 });
