@@ -13,7 +13,7 @@
 </h3>
 
 <p align="center">
-  Check the Website: <a href="https://lemon-spotify.vercel.app/">Click Here</a>
+  Check the Website: <a href="https://english-lemon-spotify.vercel.app/">Click Here</a>
 </p>
 
 <p align="center">
@@ -46,7 +46,7 @@
 ---
 
 ## 🚀 How to Use
-1. Visit the site: **[Lemon Spotify](https://lemon-spotify.vercel.app/)**
+1. Visit the site: **[Lemon Spotify](https://english-lemon-spotify.vercel.app/)**
 2. Type the name of a song or artist into the search box  
 3. Click the "Search" button to see results  
 4. Listen to the song preview  
