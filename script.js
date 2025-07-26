@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const searchButton = document.getElementById("searchButton");
   const resultsContainer = document.getElementById("results");
 
-  searchButton.addEventListener("click", async function () {
+  searchButton.addEventListener("click", async () => {
     const query = searchInput.value.trim();
     if (!query) {
       alert("Please enter a song name to search!");
@@ -20,36 +20,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
 
-      if (data.length === 0) {
+      if (!data.length || data.length === 0) {
         resultsContainer.innerHTML = "<p>No results found.</p>";
         return;
       }
 
       resultsContainer.innerHTML = "";
-      data.forEach((track) => {
+
+      data.forEach(track => {
         const trackElement = document.createElement("div");
         trackElement.classList.add("track");
+
         trackElement.innerHTML = `
           <img src="${track.image}" alt="${track.name}" />
           <div>
             <p><strong>${track.name}</strong> - ${track.artists}</p>
             <p>Duration: ${track.duration}</p>
-            <b><a href="${track.link}" target="_blank">Open in Spotify</a></b>
+            <a href="${track.link}" target="_blank">Open in Spotify</a>
             <div class="buttons">
               <button class="play-button" onclick="playSong('${track.link}')">
                 <i class="fas fa-play"></i> Play
               </button>
-              <button class="download-button" onclick="downloadSong('${track.link}', this)">
+              <button class="download-button" onclick="downloadSong('${track.link}')">
                 <i class="fas fa-download"></i> Download
               </button>
             </div>
-            <div id="spotify_player_${getSpotifyTrackId(track.link)}" style="margin-top:10px;"></div>
+            <div id="spotify_player_${getSpotifyTrackId(track.link)}"></div>
           </div>
         `;
+
         resultsContainer.appendChild(trackElement);
       });
     } catch (error) {
-      console.error("Error while searching for songs:", error);
+      console.error("Search error:", error);
       resultsContainer.innerHTML = "<p>An error occurred while searching for songs.</p>";
     }
   });
@@ -66,19 +69,18 @@ async function downloadSong(songUrl) {
   try {
     const response = await fetch(downloadApi);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const data = await response.json();
 
     if (data.status === true && data.download) {
+      // Redirect browser to download URL
       window.location.href = data.download;
     } else {
       alert("Download failed, please try again later.");
     }
   } catch (error) {
-    console.error("Error while downloading song:", error);
+    console.error("Download error:", error);
     alert("An error occurred while downloading the song.");
   }
 }
@@ -92,11 +94,11 @@ function playSong(songUrl) {
     return;
   }
 
-  // Clear all other players
-  document.querySelectorAll("[id^='spotify_player_']").forEach((el) => (el.innerHTML = ""));
+  // Clear other players
+  document.querySelectorAll("[id^='spotify_player_']").forEach(el => (el.innerHTML = ""));
 
   playerContainer.innerHTML = `
-    <iframe src="https://open.spotify.com/embed/track/${trackId}" 
+    <iframe src="https://open.spotify.com/embed/track/${trackId}"
       width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
     </iframe>
   `;
