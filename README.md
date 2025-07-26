@@ -1,24 +1,19 @@
-### Kalo Mau Ngambil Kodenya, Jangan Lupa Follow.
-### Atau Minimal Bayar Pake Star Lah 🌟....
+<!-- If you're going to use this code, please follow or at least give a star 🌟. Thanks! -->
 
-<br>
-<br>
-<br>
+<br><br><br>
 
-<h1 align="center">
-  🎵 Spotify Music Downloader 🎶
-</h1>
+<h1 align="center">🎵 Spotify Music Downloader 🎶</h1>
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=header"/>
 </p>
 
 <h3 align="center">
-  🔍 Cari, Dengar, dan Download Lagu dari Spotify 🎼
+  🔍 Search, Preview, and Download Songs from Spotify 🎼
 </h3>
 
 <p align="center">
-  Cek Websitenya <a href="https://lemon-spotify.vercel.app/">Klik Saya</a>
+  Check the Website: <a href="https://lemon-spotify.vercel.app/">Click Here</a>
 </p>
 
 <p align="center">
@@ -28,19 +23,20 @@
 
 ---
 
-## ✨ Tentang Proyek Ini
-**Spotify Music Downloader** adalah aplikasi web yang memungkinkan pengguna untuk mencari, memutar preview, dan mengunduh lagu dari Spotify.
+## ✨ About This Project
 
-⚠ **Catatan**: Tidak semua lagu dapat diunduh karena keterbatasan API.
+**Spotify Music Downloader** is a web app that allows users to search, preview, and download songs from Spotify.
 
-🎧 **Fitur Utama**:
-- 🔎 **Cari Lagu** – Temukan lagu favoritmu dari database Spotify  
-- 🎶 **Preview Lagu** – Dengarkan cuplikan lagu sebelum mengunduh  
-- ⬇️ **Download Lagu** – Unduh lagu dengan mudah (jika tersedia)  
+⚠ **Note**: Not all songs are available for download due to API limitations.
+
+🎧 **Main Features**:
+- 🔎 **Search Songs** – Find your favorite music from the Spotify database  
+- 🎶 **Preview Songs** – Listen to a preview before downloading  
+- ⬇️ **Download Songs** – Download the song easily (if available)
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 <p align="center">
   <img src="https://githubraw.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" width="50" height="50"/>
   <img src="https://githubraw.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3" width="50" height="50"/>
@@ -49,21 +45,21 @@
 
 ---
 
-## 🚀 Cara Menggunakan
-1. Buka website: **[Lemon Spotify](https://lemon-spotify.vercel.app/)**
-2. Masukkan nama lagu atau artis di kolom pencarian  
-3. Klik tombol "Search" untuk melihat hasil  
-4. Dengarkan preview lagu  
-5. Jika tersedia, klik "Download" untuk mengunduh lagu  
+## 🚀 How to Use
+1. Visit the site: **[Lemon Spotify](https://lemon-spotify.vercel.app/)**
+2. Type the name of a song or artist into the search box  
+3. Click the "Search" button to see results  
+4. Listen to the song preview  
+5. If available, click "Download" to get the song
 
 ---
 
-## 📬 Kontak
-Jika ada pertanyaan atau ingin berkontribusi, hubungi saya di:
+## 📬 Contact
+If you have questions or want to contribute, reach out to me:
 - 🌐 **GitHub**: [LemonSync](https://github.com/LemonSync)
 - 📧 **Email**: [grouplemon0@gmail.com](mailto:grouplemon0@gmail.com)
 - 🐦 **Twitter**: [@SyncLemon](https://twitter.com/SyncLemon)
-- 📞 **WhatsApp**: [Hubungi Saya](https://wa.me/6285763482523)
+- 📞 **WhatsApp**: [Contact Me](https://wa.me/6285763482523)
 
 ---
 
